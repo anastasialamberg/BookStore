@@ -21,7 +21,7 @@ public class Book {
     private String isbn;
     private Double price;
 
-    public Book(String title, String author, int publicationYear, String isbn, double price) {
+    public Book(Integer id, String title, String author, int publicationYear, String isbn, double price) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
@@ -30,11 +30,16 @@ public class Book {
     }
 
     public Book() {
+        this.id = (Integer) null;
         this.title = null;
         this.author = null;
         this.publicationYear = (Integer) null;
         this.isbn = null;
         this.price = (Double) null;
+    }
+
+    public Integer getId() {
+        return this.id != null ? this.id.intValue() : null;
     }
 
     public String getTitle() {
@@ -45,16 +50,20 @@ public class Book {
         return author;
     }
 
-    public int getPublicationYear() {
-        return publicationYear;
+    public Integer getPublicationYear() {
+        return this.publicationYear != null ? this.publicationYear.intValue() : null;
     }
 
     public String getIsbn() {
         return isbn;
     }
 
-    public double getPrice() {
-        return price;
+    public Double getPrice() {
+        return this.price != null ? this.price.doubleValue() : null;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setTitle(String title) {
@@ -79,7 +88,8 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book [title=" + title + ", author=" + author + ", publicationYear=" + publicationYear + ", isbn=" + isbn
-                + ", price=" + price + "]";
+        return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publicationYear=" + publicationYear
+                + ", isbn=" + isbn + ", price=" + price + "]";
     }
+
 }

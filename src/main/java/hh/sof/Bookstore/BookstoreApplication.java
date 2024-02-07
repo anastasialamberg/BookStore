@@ -18,8 +18,8 @@ public class BookstoreApplication {
 	@Bean
 	public CommandLineRunner demo(BookRepository bookRepository) {
 		return (args) -> {
-			Book book1 = new Book("Harry Potter and the Philosopher's stone", "J.K.Rowling", 1997, "001", 48.50);
-			Book book2 = new Book("The Hunger Games", "Suzanne Collins", 2008, "002", 22.00);
+			Book book1 = new Book(1, "Harry Potter and the Philosopher's stone", "J.K.Rowling", 1997, "001", 48.50);
+			Book book2 = new Book(2, "The Hunger Games", "Suzanne Collins", 2008, "002", 22.00);
 
 			bookRepository.save(book1);
 			bookRepository.save(book2);
