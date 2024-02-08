@@ -1,5 +1,7 @@
 package hh.sof.Bookstore.web;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,4 +44,24 @@ public class BookController {
         bookRepository.deleteById(id);
         return "redirect:/books";
     }
+
+    @GetMapping("/edit/{id}")
+    public String editBook(@PathVariable Integer id, Model model) {
+        Optional<Book> optionalBook = bookRepository.findById(id);
+
+        if (optionalBook.isPresent()) {
+            Book book = optionalBook.get();
+            model.addAttribute("book", book);
+            return "editbook";
+        } else {
+            return "redirect:/books";
+        }
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateBook(@PathVariable Integer id, @ModelAttribute("book") Book updatedBook) {
+        bookRepository.save(updatedBook);
+        return "redirect:/books";
+    }
+
 }
