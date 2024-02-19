@@ -32,6 +32,17 @@
                 <td>Price:</td>
                 <td><input type="text" th:field="*{price}" th:value="${newBook.price}" /></td>
             </tr>
+
+            <tr>
+                <td>Category:</td>
+                <td>
+                    <select id="categoryList" th:field="*{category}" class="form-control">
+                        <option th:each="cat : ${categories}" th:value="${cat.categoryId}" th:text="${cat.name}"></option>
+                    </select>
+
+                </td>
+
+            </tr>
         </table>
 
         <button type="submit">Add book</button>
