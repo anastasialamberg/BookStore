@@ -33,7 +33,7 @@
                 <th>ISBN</th>
                 <th>Price</th>
                 <th>Category</th>
-                <th sec:authorize="hasRole('ADMIN')"></th>
+                <th sec:authorize="hasAuthority('ADMIN')"></th>
             </tr>
         </thead>
         <tbody>
@@ -46,7 +46,7 @@
                 <td th:text="${book.category?.name}"></td>
                 <td>
                     <a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-xs btn-danger"
-                        sec:authorize="hasRole('ADMIN')">Delete</a>
+                        sec:authorize="hasAuthority('ADMIN')">Delete</a>
                 </td>
                 <td><a th:href="@{'/edit/' + ${book.id}}" class="btn btn-primary">Edit</a></td>
             </tr>

@@ -1,5 +1,8 @@
 package hh.sof.Bookstore;
 
+import java.util.logging.Logger;
+
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +12,8 @@ import hh.sof.Bookstore.domain.Book;
 import hh.sof.Bookstore.domain.BookRepository;
 import hh.sof.Bookstore.domain.Category;
 import hh.sof.Bookstore.domain.CategoryRepository;
+import hh.sof.Bookstore.domain.User;
+import hh.sof.Bookstore.domain.UserRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -18,7 +23,8 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository) {
+	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository,
+			UserRepository userRepository) {
 		return (args) -> {
 			Category category1 = new Category(null, "Fantasy");
 			Category category2 = new Category(null, "Sci-fi");
@@ -33,6 +39,14 @@ public class BookstoreApplication {
 			Book book2 = new Book(null, "The Hunger Games", "Suzanne Collins", 2008, "002", 22.00);
 			book2.setCategory(category2);
 			bookRepository.save(book2);
+
+			User user1 = new User("user", "$2a$10$my.VcIuboic9X1ABwp6fZ.2iBBVT1IMP4UuXel0tW.f/IpVqlIHVS",
+					"user@gmail.com", "USER");
+			User user2 = new User("admin", "$2a$10$y5CTOMgRK3hh2NDv4219he2Yh7I5CK3O7F6iZxUqcdZHtbfqP3y2W",
+					"admin@gmail.com", "ADMIN");
+			userRepository.save(user1);
+			userRepository.save(user2);
+
 		};
 	}
 
