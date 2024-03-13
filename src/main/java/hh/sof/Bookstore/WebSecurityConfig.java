@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
@@ -26,7 +27,14 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(antMatcher("/css/**")).permitAll()
                         .requestMatchers("/delete/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(toH2Console()).permitAll()
                         .anyRequest().authenticated())
+
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers(toH2Console()))
+                .headers(headers -> headers
+                        .frameOptions(frameoptions -> frameoptions
+                                .disable()))
                 .formLogin(formlogin -> formlogin
                         .defaultSuccessUrl("/books", true)
                         .permitAll())
