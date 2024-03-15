@@ -5,6 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import hh.sof.Bookstore.domain.Book;
 import hh.sof.Bookstore.domain.BookRepository;
 import hh.sof.Bookstore.domain.Category;
@@ -23,6 +26,8 @@ public class BookstoreApplication {
 	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository,
 			UserRepository userRepository) {
 		return (args) -> {
+			Logger logger = LoggerFactory.getLogger(BookstoreApplication.class);
+
 			Category category1 = new Category(null, "Fantasy");
 			Category category2 = new Category(null, "Sci-fi");
 
@@ -44,6 +49,7 @@ public class BookstoreApplication {
 			userRepository.save(user1);
 			userRepository.save(user2);
 
+			logger.info("Demo data added successfully.");
 		};
 	}
 

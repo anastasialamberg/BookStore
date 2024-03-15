@@ -77,4 +77,9 @@ public class User {
         this.role = role;
     }
 
+    public User get(int i) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'get'");
+    }
+
 }
